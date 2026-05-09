@@ -7,8 +7,8 @@ Each exercise is designed to help you understand and practice different vulnerab
 ## 📂 Contents  
 Here are the available modules and their respective README files:  
 
-- **[./SQL injection](SQL/README.md)**
 - **[./Basics](Basics/README.md)**
+- **[./SQL injection](SQL/README.md)**
 - **./Cookie sandwich attack (coming soon)**
 - **./Request smuggling (coming soon)**
 - **./XSS (coming soon)** 
