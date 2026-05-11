@@ -17,7 +17,7 @@ This section includes introductory exercises covering topics such as:
 - HTTP status codes and their meanings  
 - Headers manipulations
 - HTTP Methods
-- Usage of the library `requests` 
+- Usage of the `requests` library 
   
 
 ---
