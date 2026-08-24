@@ -26,8 +26,6 @@ It occurs when a user's input is not properly prepared, allowing us to inject ar
 | Ex n°5     | Read files from the server (`/` directory) | [./exercises/ex_5](exercises/ex_5) |
 
 ---
-<br>
-
-## ⏳ Next exercise coming soon...  
+<br> 
 
 
