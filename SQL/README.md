@@ -10,7 +10,8 @@ First of all, **what is a SQL injection?**
 It occurs when a user's input is not properly prepared, allowing us to inject arbitrary SQL queries that will be executed by the server. Using these queries, you might be able to:  
 - Bypass authentication without a password  
 - Leak information from databases  
-- Read and write files on the server  
+- Read and write files on the server
+- Execute commands on the server
 
 ---
 
