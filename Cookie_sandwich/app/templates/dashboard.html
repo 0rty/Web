@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Commandes — Wagon 09{% endblock %}
+{% block wagon_number %}09{% endblock %}
+{% block header_wagon %}09{% endblock %}
+{% block header_section %}Pâtisserie{% endblock %}
+
+{% block nav %}
+<a href="/dashboard" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">Commandes</a>
+<a href="/recipes"   class="nav-link {% if request.path == '/recipes'   %}active{% endif %}">Recettes</a>
+<a href="/signal"    class="nav-link {% if request.path == '/signal'    %}active{% endif %}">Signaler</a>
+{% endblock %}
+
+{% block head %}
+<style>
+  .order-id-strip {
+    background: rgba(0,0,0,0.35);
+    border-bottom: 1px solid var(--border);
+    padding: 5px 16px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .order-id-value { color: var(--amber); font-size: 11px; }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .menu-item {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .menu-item-name  { font-size: 13px; color: var(--text); }
+  .menu-item-price { font-size: 11px; color: var(--text-muted); }
+  .btn-order {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px; padding: 6px; cursor: pointer;
+    transition: all 0.15s; width: 100%; border-radius: 2px;
+  }
+  .btn-order:hover { border-color: var(--amber-dim); color: var(--amber); }
+  .confirm-box {
+    background: rgba(45,110,58,0.1);
+    border: 1px solid var(--green-ok);
+    border-left: 4px solid var(--green-ok);
+    padding: 10px 14px; font-size: 12px; color: var(--green-text);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="panel" style="grid-column: 1 / -1;">
+  <div class="panel-header">
+    <span class="panel-label">TERMINAL W-09 // SERVICE PÂTISSERIE</span>
+    <span class="panel-blink">●</span>
+  </div>
+
+  <div class="order-id-strip">
+    <span>N° de suivi :</span>
+    <span class="order-id-value">{{ order_id | safe }}</span>
+  </div>
+
+  <div class="panel-body">
+    <h1 class="panel-title">Bienvenue, {{ username }}</h1>
+    <p class="panel-desc">
+      Le wagon-restaurant reste opérationnel malgré tout. Passez commande ci-dessous.
+      Les recettes complètes sont consultables dans l'onglet <em>Recettes</em>.
+    </p>
+
+    <!-- TODO: supprimer le paramètre ?note= utilisé pour les tests de notification -->
+    {% if note %}
+    <div class="alert-box" style="border-color: var(--amber-dim);">
+      <span class="alert-icon" style="color:var(--amber);">ℹ</span>
+      <span>{{ note | safe }}</span>
+    </div>
+    {% endif %}
+
+    {% if order_confirmed %}
+    <div class="confirm-box">
+      ✔ Commande enregistrée : <strong>{{ order_qty }}× {{ order_confirmed }}</strong> — en préparation.
+    </div>
+    {% endif %}
+
+    <div class="menu-grid">
+      {% set items = [
+        ('Croissant',        '1 crédit'),
+        ('Pain au chocolat', '1 crédit'),
+        ('Éclair au café',   '2 crédits'),
+        ('Mille-feuille',    '3 crédits'),
+        ('Tarte Tatin',      '3 crédits'),
+        ('Macaron (x4)',     '2 crédits'),
+        ('Kouign-amann',     '2 crédits'),
+        ('Financier',        '1 crédit'),
+        ('Paris-Brest',      '4 crédits'),
+        ('Saint-Honoré',     '5 crédits'),
+      ] %}
+      {% for name, price in items %}
+      <div class="menu-item">
+        <span class="menu-item-name">{{ name }}</span>
+        <span class="menu-item-price">{{ price }}</span>
+        <form method="POST" action="/order">
+          <input type="hidden" name="item" value="{{ name }}" />
+          <input type="hidden" name="qty"  value="1" />
+          <button type="submit" class="btn-order">Commander</button>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block status_color %}green{% endblock %}
+{% block footer_status %}SERVICE EN LIGNE — WAGON 09 OPÉRATIONNEL{% endblock %}

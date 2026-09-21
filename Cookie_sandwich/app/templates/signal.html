@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Signaler — Wagon 09{% endblock %}
+{% block wagon_number %}09{% endblock %}
+{% block header_wagon %}09{% endblock %}
+{% block header_section %}Signalement{% endblock %}
+
+{% block nav %}
+<a href="/dashboard" class="nav-link">Commandes</a>
+<a href="/recipes"   class="nav-link">Recettes</a>
+<a href="/signal"    class="nav-link active">Signaler</a>
+<a href="/logout"    class="nav-link">Déconnexion</a>
+{% endblock %}
+
+{% block head %}
+<style>
+  .train-main { grid-template-columns: 1fr !important; }
+  .signal-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border-light);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px; padding: 10px 12px; border-radius: 2px;
+    outline: none; width: 100%; transition: border-color 0.15s;
+  }
+  .signal-input:focus { border-color: var(--red); }
+  .signal-input::placeholder { color: var(--text-dim); }
+  .form-label { font-size: 11px; letter-spacing: 0.15em; color: var(--text-dim); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="panel" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
+  <div class="panel-header">
+    <span class="panel-label">TERMINAL W-09 // SIGNALEMENT AU CHEF</span>
+    <span class="panel-blink">●</span>
+  </div>
+  <div class="panel-body">
+    <h1 class="panel-title">Signaler un problème</h1>
+    <p class="panel-desc">
+      Une anomalie dans le système ? Soumettez l'URL concernée.
+      Le chef y jettera un œil sous peu.
+    </p>
+
+    {% if sent %}
+    <div class="alert-box" style="border-color: var(--green-ok); border-left-color: var(--green-ok);">
+      <span class="alert-icon" style="color: var(--green-text);">✔</span>
+      <span>Signalement transmis. Le chef examinera le problème.</span>
+    </div>
+    {% else %}
+    <form method="POST" action="/signal" style="display:flex; flex-direction:column; gap: 0.75rem;">
+      <label class="form-label" for="url">URL à signaler</label>
+      <input class="signal-input" type="text" id="url" name="url"
+             placeholder="http://..." autocomplete="off" required />
+      <div class="button-row">
+        <button type="submit" class="btn-primary" style="width:100%; text-align:center;">
+          Envoyer au chef
+        </button>
+      </div>
+    </form>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block status_color %}red{% endblock %}
+{% block footer_status %}SYSTÈME COMPROMIS — CANAL CHEF ACTIF{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Signalement — Wagon 09{% endblock %}
+{% block wagon_number %}09{% endblock %}
+{% block header_wagon %}09{% endblock %}
+{% block header_section %}Pâtisserie{% endblock %}
+
+{% block nav %}
+<a href="/dashboard" class="nav-link">Commandes</a>
+<a href="/recipes"   class="nav-link">Recettes</a>
+<a href="/logout"    class="nav-link">Déconnexion</a>
+{% endblock %}
+
+{% block content %}
+<div class="panel" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
+  <div class="panel-header">
+    <span class="panel-label">TERMINAL W-09 // SIGNALEMENT</span>
+  </div>
+  <div class="panel-body">
+    <div class="alert-box" style="border-color: var(--green-ok); border-left-color: var(--green-ok);">
+      <span class="alert-icon" style="color: var(--green-text);">✔</span>
+      <span>Signalement transmis au chef. Il examinera le problème sous peu.</span>
+    </div>
+    <div class="button-row" style="margin-top: 1rem;">
+      <a href="/dashboard" class="btn-primary">Retour aux commandes</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block status_color %}green{% endblock %}
+{% block footer_status %}SIGNALEMENT ENVOYÉ{% endblock %}

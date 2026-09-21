@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Jörmungand{% endblock %} — Wagon {% block wagon_number %}0{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <header class="train-header">
+    <div class="header-inner">
+      <div class="train-logo">
+        <span class="logo-snake">⟁</span>
+        <div class="logo-text">
+          <span class="logo-title">JÖRMUNGAND</span>
+          <span class="logo-sub">Wagon {% block header_wagon %}00{% endblock %} — {% block header_section %}Système{% endblock %}</span>
+        </div>
+      </div>
+      <nav class="train-nav">
+        {% block nav %}
+        <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Accueil</a>
+        {% endblock %}
+      </nav>
+    </div>
+  </header>
+
+  <div class="train-window-strip">
+    <div class="window"></div>
+    <div class="window"></div>
+    <div class="window"></div>
+    <div class="window"></div>
+    <div class="window"></div>
+  </div>
+
+  <main class="train-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="train-footer">
+    <div class="footer-inner">
+      <span class="footer-status">
+        <span class="status-dot {% block status_color %}red{% endblock %}"></span>
+        {% block footer_status %}SYSTÈME COMPROMIS{% endblock %}
+      </span>
+      <span class="footer-coords">
+        VITESSE : 87 km/h &nbsp;|&nbsp; TEMPÉRATURE EXTÉRIEURE : -31°C &nbsp;|&nbsp; PROCHAIN ARRÊT : INCONNU
+      </span>
+    </div>
+  </footer>
+
+</body>
+</html>

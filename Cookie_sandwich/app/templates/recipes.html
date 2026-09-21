@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Recettes — Wagon 09{% endblock %}
+{% block wagon_number %}09{% endblock %}
+{% block header_wagon %}09{% endblock %}
+{% block header_section %}Recettes{% endblock %}
+
+{% block nav %}
+<a href="/dashboard" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">Commandes</a>
+<a href="/recipes"   class="nav-link {% if request.path == '/recipes'   %}active{% endif %}">Recettes</a>
+<a href="/logout"    class="nav-link">Déconnexion</a>
+{% endblock %}
+
+{% block head %}
+<style>
+  .search-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .search-input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border-light);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 2px;
+    outline: none;
+    flex: 1;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--amber-dim); }
+  .search-input::placeholder { color: var(--text-dim); }
+  .recipes-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .recipes-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .recipes-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+  }
+  .recipes-table tr:last-child td { border-bottom: none; }
+  .recipes-table td:first-child { color: var(--text-dim); width: 32px; }
+  .recipes-table td:nth-child(2) { color: var(--text); font-size: 13px; }
+  .recipes-table td:nth-child(3) { color: var(--amber-dim); width: 100px; }
+  .error-box {
+    background: rgba(139,28,28,0.1);
+    border: 1px solid var(--red);
+    border-left: 4px solid var(--red-bright);
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--red-glow);
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .no-result {
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 1rem 0;
+    text-align: center;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="panel" style="grid-column: 1 / -1;">
+  <div class="panel-header">
+    <span class="panel-label">TERMINAL W-09 // ARCHIVE RECETTES</span>
+    <span class="panel-blink">●</span>
+  </div>
+  <div class="panel-body">
+
+    <h1 class="panel-title">Recettes du chef</h1>
+    <p class="panel-desc">
+      Base de données des recettes originales du wagon-restaurant.
+      Certaines formules restent <span class="highlight-red">confidentielles</span> et n'apparaissent pas ici.
+    </p>
+
+    <form method="GET" action="/recipes" class="search-form">
+      <input
+        class="search-input"
+        type="text"
+        name="q"
+        value="{{ search }}"
+        placeholder="Rechercher une recette…"
+        autocomplete="off"
+      />
+      <button type="submit" class="btn-primary" style="padding: 8px 20px;">Rechercher</button>
+    </form>
+
+    {% if error %}
+    <div class="error-box">ERREUR SQL : {{ error }}</div>
+    {% endif %}
+
+    {% if rows %}
+    <table class="recipes-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>NOM</th>
+          <th>ORIGINE</th>
+          <th>DÉTAILS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+          <td>{{ row[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% elif search %}
+    <p class="no-result">Aucune recette trouvée pour « {{ search }} ».</p>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+{% block status_color %}green{% endblock %}
+{% block footer_status %}ARCHIVE RECETTES — {{ rows|length }} ENTRÉE(S){% endblock %}
