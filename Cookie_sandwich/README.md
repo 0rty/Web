@@ -2,7 +2,7 @@
 This lab has been made for the 2nd edition of the Time0UTT CTF organised by the association HackUTT.
 It aims to implement the "Cookie sandwich Technique" and force players to use this technique to catch an HttpOnly cookie.
 For more information on this subject, refer to this article: `https://portswigger.net/research/stealing-httponly-cookies-with-the-cookie-sandwich-technique`
-You're starting with credentials: `Emilien / Croissant123!`
+**You're starting with credentials: `Emilien / Croissant123!`**
 
 ## Deployment
 
