@@ -19,7 +19,7 @@ docker run -p 5004:5004 lab04
 
 Then open: http://localhost:5004
 
-## Background — Range Header
+## Background - Range Header
 
 The `Range` header (RFC 7233) allows clients to request a specific portion of a resource,  
 commonly used for resuming downloads or video streaming.
