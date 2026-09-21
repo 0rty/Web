@@ -9,9 +9,7 @@ Here are the available modules and their respective README files:
 
 - **[./Basics](Basics/)**
 - **[./SQL injection](SQL/)**
-- **./Cookie sandwich attack (coming soon)**
-- **./Request smuggling (coming soon)**
-- **./XSS (coming soon)** 
+- **[./403 Bypass](403bypass/)**
 
 ---
 ### ⚠️ Disclaimer  
