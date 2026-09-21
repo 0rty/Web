@@ -1,4 +1,4 @@
-# Lab 01 — Path Double URL Encoding
+# Lab 01 - Path Double URL Encoding
 
 ## Scenario
 
