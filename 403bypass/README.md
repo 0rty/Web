@@ -1,7 +1,7 @@
-# 403 Bypass Labs — HackUTT
+# 403 Bypass Labs
 
 A collection of 5 independent hands-on labs covering common HTTP 403 bypass techniques.  
-Each lab runs in Docker and exposes a Flask application (with nginx for lab 05).
+Each lab runs in Docker and exposes a Flask application.
 
 ## Labs
 
@@ -11,7 +11,7 @@ Each lab runs in Docker and exposes a Flask application (with nginx for lab 05).
 | 02 | Path Normalization | 5002 | Flask |
 | 03 | API Version Bypass | 5003 | Flask |
 | 04 | Range Header Content Leak | 5004 | Flask |
-| 05 | HTTP Request Smuggling (CL.TE) | 5005 | nginx + gunicorn + Flask |
+| 05 | HTTP Request Smuggling (CL.TE) | 5005 | Flask |
 
 ## Quick start
 
@@ -20,9 +20,9 @@ Each lab is independent. Navigate into a folder and run:
 ```bash
 # Labs 01–04 (Flask only)
 docker build -t labXX .
-docker run -p 50XX:5000 labXX
+docker run -p 50XX:50XX labXX
 
-# Lab 05 (nginx + gunicorn)
+# Lab 05
 docker-compose up --build
 ```
 
