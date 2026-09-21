@@ -10,6 +10,7 @@ Here are the available modules and their respective README files:
 - **[./Basics](Basics/)**
 - **[./SQL injection](SQL/)**
 - **[./403 Bypass](403bypass/)**
+- **[./Cookie sandwich technique](Cookie_sandwich/)**
 
 ---
 ### ⚠️ Disclaimer  
