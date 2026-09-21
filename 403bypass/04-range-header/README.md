@@ -1,4 +1,4 @@
-# Lab 04 — Range Header Bypass
+# Lab 04 - Range Header Bypass
 
 ## Scenario
 
