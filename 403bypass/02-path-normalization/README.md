@@ -1,4 +1,4 @@
-# Lab 02 — Path Normalization
+# Lab 02 - Path Normalization
 
 ## Scenario
 
