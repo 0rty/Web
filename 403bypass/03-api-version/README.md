@@ -1,4 +1,4 @@
-# Lab 03 — API Version Bypass
+# Lab 03 - API Version Bypass
 
 ## Scenario
 
